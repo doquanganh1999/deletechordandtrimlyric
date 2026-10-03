@@ -2,23 +2,11 @@
 <html>
     <head>
         <script>
-            function removeChordsAndSpaces(lyrics) {
-            return lyrics
-                // Xóa hợp âm trong dấu ngoặc vuông
-                .replace(/\[[^\]]+\]/g, '')
-                // Xóa khoảng trắng thừa ở đầu/cuối dòng
-                .split('\n')
-                .map(line => line.trim())
-                // Xóa khoảng trắng thừa giữa các từ
-                .map(line => line.replace(/\s+/g, ' '))
-                .join('\n')
-                // Xóa dòng trống thừa
-                .replace(/\n{2,}/g, '\n');
+            function removeChordsAndSpaces() {
+                var song = document.getElementById('origin').value;
+                cleanLyrics=song.replace(/\[[^\]]+\]/g, '').split('\n').map(line => line.trim()).map(line => line.replace(/\s+/g, ' ')).join('\n').replace(/\n{2,}/g, '\n');
+                document.getElementById('final').innerHTML = cleanLyrics;
             }
-
-            const song = document.getElementById('origin').value;
-            const cleanLyrics = removeChordsAndSpaces(song);
-            document.getElementById('final').innerHTML = cleanLyrics;
         </script>
         <style>
             textarea{
@@ -29,6 +17,7 @@
     </head>
     <body>
         <textarea id="origin"></textarea>
+        <button onclick=>Action</button>
         <p id="final"></p>
     </body>
 </html>
