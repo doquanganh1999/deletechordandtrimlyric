@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function removeChordsAndSpaces(lyrics) {
+            return lyrics
+                // Xóa hợp âm trong dấu ngoặc vuông
+                .replace(/\[[^\]]+\]/g, '')
+                // Xóa khoảng trắng thừa ở đầu/cuối dòng
+                .split('\n')
+                .map(line => line.trim())
+                // Xóa khoảng trắng thừa giữa các từ
+                .map(line => line.replace(/\s+/g, ' '))
+                .join('\n')
+                // Xóa dòng trống thừa
+                .replace(/\n{2,}/g, '\n');
+            }
+
+            const song = document.getElementById('origin').value;
+            const cleanLyrics = removeChordsAndSpaces(song);
+            document.getElementById('final').innerHTML = cleanLyrics;
+        </script>
+    </head>
+    <body>
+        <textarea id="origin"></textarea>
+        <p id="final"></p>
+    </body>
+</html>
